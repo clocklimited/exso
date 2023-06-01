@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "\"exsolvo\" to release",
   "engines": {
-    "node": "4.4.4"
+    "node": "~18.16.0",
+    "yarn": "~1"
   },
   "main": "index.js",
   "scripts": {
