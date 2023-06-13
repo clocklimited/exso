@@ -23,7 +23,7 @@ describe('release-management changelog generator', function () {
               function createFile (path, contents, commitMessage, branch, cb) {
                 createFileCalled = true
                 assert.equal(path, 'changelog.md')
-                assert.equal(contents, 'v1.0.0 / Sat Jan 01 2000 00:00:00 GMT+0000 (UTC)' +
+                assert.equal(contents, 'v1.0.0 / Sat Jan 01 2000 00:00:00 GMT+0000 (Coordinated Universal Time)' +
                   '\n====================================\n- [FD #2012] Fix some strange issue\n' +
                   '- [FD #2013] Fix some other issue\n- [PT #12432313] Implement my awesome feature\n' +
                   '- [PT #12432453] Implement my other awesome feature\n\n')
@@ -63,7 +63,7 @@ describe('release-management changelog generator', function () {
               function updateFile (path, contents, commitMessage, branch, blobSha, cb) {
                 updateFileCalled = true
                 assert.equal(path, 'changelog.md')
-                assert.equal(contents, 'v1.0.0 / Sat Jan 01 2000 00:00:00 GMT+0000 (UTC)' +
+                assert.equal(contents, 'v1.0.0 / Sat Jan 01 2000 00:00:00 GMT+0000 (Coordinated Universal Time)' +
                   '\n====================================\n- [FD #2012] Fix some strange issue\n' +
                   '- [FD #2013] Fix some other issue\n- [PT #12432313] Implement my awesome feature\n' +
                   '- [PT #12432453] Implement my other awesome feature\n\n' +
