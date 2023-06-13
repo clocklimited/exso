@@ -322,8 +322,8 @@ describe('Repo Manager', function () {
                     var repoManager = serviceLocator.repoManager(branch.owner, branch.repo)
                     repoManager.getFileContents('package.json', 'master', function (error, contents, blobSha) {
                       if (error) return done(error)
-                      assert.equal(contents, '{\n  \"name\": \"exso-test\",\n  \"version\":' +
-                        ' \"v2.0.0\",\n  \"dependencies\": {}\n}\n')
+                      assert.equal(contents, '{\n  "name": "exso-test",\n  "version":' +
+                        ' "v2.0.0",\n  "dependencies": {}\n}\n')
                       assert.equal(blobSha, 'abc123')
                       done()
                     })

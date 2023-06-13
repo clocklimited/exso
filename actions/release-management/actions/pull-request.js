@@ -22,7 +22,8 @@ function createAction (serviceLocator) {
                 if (error) return cb(error)
                 var comment = { author: pr.assignee }
                   , pullsToAddToRelease = prs.filter(function (pr) {
-                      return pr.labels.indexOf('add-to-any-release') > -1 || pr.labels.indexOf('add-to-next-release') > -1
+                      return pr.labels.indexOf('add-to-any-release') > -1 ||
+                        pr.labels.indexOf('add-to-next-release') > -1
                     })
 
                 async.eachSeries(pullsToAddToRelease
