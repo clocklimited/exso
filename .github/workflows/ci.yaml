@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Get NODE_VERSION
+        run: echo "NODE_VERSION=$(cat .naverc)" >> $GITHUB_ENV
+      -
+        name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+
+      - name: Yarn Cache Directory Path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-${{ env.NODE_VERSION  }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ env.NODE_VERSION  }}
+
+      -
+        name: Setup Nave
+        run: |
+          wget https://raw.githubusercontent.com/isaacs/nave/main/nave.sh
+          mkdir -p $GITHUB_WORKSPACE/bin
+          mv nave.sh $GITHUB_WORKSPACE/bin/nave
+          chmod +x $GITHUB_WORKSPACE/bin/nave
+          echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
+      -
+        name: Install Yarn
+        run: npm i -g yarn@1
+
+      -
+        name: Install Dependencies
+        run: yarn install --silent --no-emoji --prefer-offline
+
+      -
+        name: Quality Assurance
+        run: yarn qa
+
+      -
+        name: Tests
+        run: yarn test
