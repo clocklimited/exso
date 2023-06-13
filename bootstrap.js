@@ -23,7 +23,7 @@ function bootstrap (serviceLocator, actions, cb) {
   webhookParser.on('*', handleWebhook)
 
   webhookParser.on('error', function (error) {
-    serviceLocator.logger.error(error)
+    serviceLocator.logger.error(error, 'github-webhook-handler error')
   })
 
   serviceLocator.register('server', server)
