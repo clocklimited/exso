@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "qa": "eslint -f unix .",
     "test": "istanbul cover _mocha $(find . -path ./node_modules -prune -o -name '*.test.js')",
     "posttest": "istanbul check-coverage && rm -rf coverage"
   },
