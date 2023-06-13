@@ -815,10 +815,10 @@ github-webhook-handler@^1.0.0:
   dependencies:
     bl "~4.0.0"
 
-github4@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/github4/-/github4-0.5.5.tgz#28b5eb1e654c2f99120aa03b19b8aeb8cec58cad"
-  integrity sha512-091hVKkJs3iBTxrMONWXfuj4JH7LadiWfiBVdkMl0ro72vng3otyGexv5/6W7tntK0if31LhvmaLml4aCt35rA==
+github4@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/github4/-/github4-1.1.1.tgz#3ad6a89a7b590475a90919887068523a040fc52e"
+  integrity sha512-SFVpjEyF/4hG4FI4NCbcvaWTAoazfnxWNufF3RRLyv8rDMELRvRCgA/UmpIfwLInT4IccQqimeQFbhibhAn34Q==
   dependencies:
     follow-redirects "0.0.7"
     https-proxy-agent "^1.0.0"

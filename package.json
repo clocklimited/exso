@@ -20,7 +20,7 @@
     "bunyan": "^1.8.0",
     "express": "^4.13.4",
     "github-webhook-handler": "^1.0.0",
-    "github4": "^0.5.5",
+    "github4": "^1.1.1",
     "lodash.findwhere": "^3.1.0",
     "lodash.pluck": "^3.1.2",
     "random-words": "0.0.1",
