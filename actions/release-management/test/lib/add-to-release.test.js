@@ -36,7 +36,7 @@ describe('release-management add-to-release', function () {
   it('should comment on original PR if its status is not success and there is a status', function (done) {
     var addCommentCalled = false
       , pr =
-          { branch: ''
+          { branch: 'feature/test'
           , baseRef: 'master'
           , getCurrentStatus: function (cb) {
               cb(null, { state: 'pending', statuses: [ {} ] })
@@ -67,7 +67,7 @@ describe('release-management add-to-release', function () {
             }
           }
       , pr =
-          { branch: 'branch'
+          { branch: 'feature/branch'
           , baseRef: 'master'
           , owner: 'owner'
           , repo: 'repo'
@@ -81,7 +81,7 @@ describe('release-management add-to-release', function () {
       return function createNewRelease (releaseNameNumber, pr, comment, repoManager, cb) {
         createNewReleaseCalled = true
         assert.equal(releaseNameNumber, null)
-        assert.equal(pr.branch, 'branch')
+        assert.equal(pr.branch, 'feature/branch')
         assert.equal(comment, 'comment')
         assert.equal(repoManager, 'repoManager')
         cb()
@@ -106,7 +106,7 @@ describe('release-management add-to-release', function () {
             }
           }
       , pr =
-          { branch: 'branch'
+          { branch: 'feature/branch'
           , baseRef: 'master'
           , owner: 'owner'
           , repo: 'repo'
@@ -120,7 +120,7 @@ describe('release-management add-to-release', function () {
       return function createNewRelease (releaseNameNumber, pr, comment, repoManager, cb) {
         createNewReleaseCalled = true
         assert.equal(releaseNameNumber, null)
-        assert.equal(pr.branch, 'branch')
+        assert.equal(pr.branch, 'feature/branch')
         assert.equal(comment, 'comment')
         assert.equal(repoManager, 'repoManager')
         cb()
@@ -145,7 +145,7 @@ describe('release-management add-to-release', function () {
             }
           }
       , pr =
-          { branch: 'branch'
+          { branch: 'feature/branch'
           , baseRef: 'master'
           , owner: 'owner'
           , repo: 'repo'
@@ -159,7 +159,7 @@ describe('release-management add-to-release', function () {
       return function createNewRelease (releaseNameNumber, pr, comment, repoManager, cb) {
         createNewReleaseCalled = true
         assert.equal(releaseNameNumber, 'dave')
-        assert.equal(pr.branch, 'branch')
+        assert.equal(pr.branch, 'feature/branch')
         assert.equal(comment, 'comment')
         assert.equal(repoManager, 'repoManager')
         cb()
@@ -184,7 +184,7 @@ describe('release-management add-to-release', function () {
             }
           }
       , pr =
-          { branch: 'branch'
+          { branch: 'feature/branch'
           , baseRef: 'master'
           , owner: 'owner'
           , repo: 'repo'
@@ -198,7 +198,7 @@ describe('release-management add-to-release', function () {
       return function addToExistingRelease (releaseNameNumber, pr, comment, repoManager, cb) {
         addToExistingReleaseCalled = true
         assert.equal(releaseNameNumber, 1)
-        assert.equal(pr.branch, 'branch')
+        assert.equal(pr.branch, 'feature/branch')
         assert.equal(comment, 'comment')
         assert.equal(repoManager, 'repoManager')
         cb()

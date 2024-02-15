@@ -13,14 +13,14 @@ function createAddToRelease (serviceLocator) {
     // don't run on release PRs
     if (pr.branch.indexOf('release/') === 0) return cb()
     // make sure branches start with the right names, otherwise releases will/can break
-    if (!['feature/', 'feat/', 'bug/', 'fix/'].some(prefix => pr.branch.includes(prefix))) {
-      commentToAdd = '@' + comment.author + ' Pull Request branches must start with `feature/`, `feat/`, ' +
-        '`bug/` or `fix/`. Please recreate this Pull Request with a valid branch name.'
-      return pr.addComment(commentToAdd, cb)
-    }
     if (pr.baseRef !== 'master') {
       commentToAdd = '@' + comment.author + ' Only Pull Requests based off of `master` ' +
         'can be merged into to a release. Please merge this Pull Request and then add the base branch to the release.'
+      return pr.addComment(commentToAdd, cb)
+    }
+    if (!['feature/', 'feat/', 'bug/', 'fix/'].some(prefix => pr.branch.includes(prefix))) {
+      commentToAdd = '@' + comment.author + ' Pull Request branches must start with `feature/`, `feat/`, ' +
+        '`bug/` or `fix/`. Please recreate this Pull Request with a valid branch name.'
       return pr.addComment(commentToAdd, cb)
     }
     pr.getCurrentStatus(function (error, status) {
