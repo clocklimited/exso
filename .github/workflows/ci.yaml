@@ -10,22 +10,25 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       -
         name: Get NODE_VERSION
         run: echo "NODE_VERSION=$(cat .naverc)" >> $GITHUB_ENV
       -
         name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: '${{ env.NODE_VERSION }}'
+
+      - name: Install Yarn
+        run: npm i -g yarn@1.22.22
 
       - name: Yarn Cache Directory Path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -34,20 +37,8 @@ jobs:
             ${{ runner.os }}-yarn-${{ env.NODE_VERSION  }}
 
       -
-        name: Setup Nave
-        run: |
-          wget https://raw.githubusercontent.com/isaacs/nave/main/nave.sh
-          mkdir -p $GITHUB_WORKSPACE/bin
-          mv nave.sh $GITHUB_WORKSPACE/bin/nave
-          chmod +x $GITHUB_WORKSPACE/bin/nave
-          echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
-      -
-        name: Install Yarn
-        run: npm i -g yarn@1
-
-      -
         name: Install Dependencies
-        run: yarn install --silent --no-emoji --prefer-offline
+        run: yarn install --frozen-lockfile --silent --no-emoji --prefer-offline
 
       -
         name: Quality Assurance
@@ -56,3 +47,6 @@ jobs:
       -
         name: Tests
         run: yarn test
+
+      - name: Build Docker image
+        run: docker build -t exso:ci .
