@@ -100,7 +100,9 @@ Once merged into `master` the Release PR and all Feature PRs contained within it
 
 ## Local Development
 
-This project uses NodeJS 4.4.4 and npm.
+This project uses Node.js 26.12.1 and Yarn Classic 1.x. Run `nave auto` to use
+the version in `.naverc`, then `yarn install --frozen-lockfile`, `yarn qa`, and
+`yarn test`.
 
 Some configuration is required to run the bot locally:
 
