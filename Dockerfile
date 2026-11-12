@@ -1,4 +1,4 @@
-FROM node:26.12.1-alpine AS base
+FROM node:26.13.1-alpine AS base
 
 RUN apk add --update curl git build-base \
   && rm -rf /var/cache/apk/*
